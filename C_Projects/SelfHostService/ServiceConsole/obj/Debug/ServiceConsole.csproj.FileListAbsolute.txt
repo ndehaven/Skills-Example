@@ -1,0 +1,7 @@
+C:\Users\16024\source\repos\SelfHostService\ServiceConsole\bin\Debug\ServiceConsole.exe.config
+C:\Users\16024\source\repos\SelfHostService\ServiceConsole\bin\Debug\ServiceConsole.exe
+C:\Users\16024\source\repos\SelfHostService\ServiceConsole\bin\Debug\ServiceConsole.pdb
+C:\Users\16024\source\repos\SelfHostService\ServiceConsole\obj\Debug\ServiceConsole.csproj.AssemblyReference.cache
+C:\Users\16024\source\repos\SelfHostService\ServiceConsole\obj\Debug\ServiceConsole.csproj.CoreCompileInputs.cache
+C:\Users\16024\source\repos\SelfHostService\ServiceConsole\obj\Debug\ServiceConsole.exe
+C:\Users\16024\source\repos\SelfHostService\ServiceConsole\obj\Debug\ServiceConsole.pdb

@@ -1,0 +1,7 @@
+C:\Users\16024\source\repos\SelfHostService\ClientConsole1\bin\Debug\ClientConsole1.exe.config
+C:\Users\16024\source\repos\SelfHostService\ClientConsole1\bin\Debug\ClientConsole1.exe
+C:\Users\16024\source\repos\SelfHostService\ClientConsole1\bin\Debug\ClientConsole1.pdb
+C:\Users\16024\source\repos\SelfHostService\ClientConsole1\obj\Debug\ClientConsole1.csproj.AssemblyReference.cache
+C:\Users\16024\source\repos\SelfHostService\ClientConsole1\obj\Debug\ClientConsole1.csproj.CoreCompileInputs.cache
+C:\Users\16024\source\repos\SelfHostService\ClientConsole1\obj\Debug\ClientConsole1.exe
+C:\Users\16024\source\repos\SelfHostService\ClientConsole1\obj\Debug\ClientConsole1.pdb
