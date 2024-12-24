@@ -1,0 +1,139 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header Styles */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1c1e21;
+    padding: 20px 10px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    height: 20px;
+}
+
+.description-left{
+    font-size: 20px;
+    font-weight: bold;
+    color: maroon;
+    margin: 20px 0 0 35px;
+    text-align: center;
+}
+
+.description-right{
+    font-style: italic;
+    font-size: 12px;
+    font-weight: bold;
+    color: #1c1e21;
+    margin: 0 0 0 10px;
+    text-align: center;
+}
+
+.logo a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    font-size: 24px;
+}
+
+.logo img {
+    height: 50px;
+    margin-right: 10px;
+}
+
+.logo span {
+    font-family: 'Georgia', serif;
+    font-size: 28px;
+    font-weight: bold;
+    background: linear-gradient(45deg, #ff6b6b, #f94d6f);
+    -webkit-background-clip: text;
+    color: transparent;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    letter-spacing: 3px;
+}
+
+/* Main Content Styles */
+.content {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+    transition: all 0.3s ease;
+}
+
+.green {
+    background-color: lightgrey;
+    border: 2px solid black;
+    color: darkgrey;
+    width: 60%;
+}
+
+.green h2 {
+    padding: 10px 0 0 0;
+    text-align: center;
+    color: black;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    font-size: 28px;
+    text-transform: uppercase;
+}
+
+.bottom-container {
+    background-color: grey;
+    height: auto; /* Dynamically adjusts height */
+    max-height: 150px;
+    border: 2px solid black;
+    padding: 20px;
+    width: 140%; /* Responsive width */
+    max-width: 900px; /* Limit the container width */
+    margin: 10px auto 10px auto; /* Center horizontally with some vertical spacing */
+    transform: translateX(20%); /* Slightly move the container towards the right */
+    text-align: center;
+    box-sizing: border-box; /* Include padding in width/height calculations */
+}
+
+.bottom-header {
+    background-color: #1c1e21;
+    padding: 10px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    margin: 0 0 10px 0;
+}
+
+#chart-controls {
+    display: flex;
+    flex-wrap: wrap; /* Allow buttons to wrap to a new row */
+    justify-content: center; /* Center-align buttons within the container */
+    gap: 10px; /* Add spacing between buttons */
+}
+
+#chart-controls button {
+    background-color: maroon;
+    color: gold;
+    font-size: 16px;
+    padding: 10px 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    width: calc(25% - 20px); /* Each button takes up 25% width with spacing */
+    max-width: 150px; /* Optional: Prevent buttons from becoming too large */
+    min-width: 100px; /* Optional: Set a minimum button width */
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+#chart-controls button:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+#chart-controls button:active {
+    transform: scale(0.95);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+}
