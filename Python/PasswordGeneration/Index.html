@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Generator</title>
+    <script>
+        async function generatePassword(event) {
+            event.preventDefault();
+            const formData = new FormData(document.getElementById('passwordForm'));
+            const response = await fetch('/generate', {
+                method: 'POST',
+                body: formData
+            });
+            const result = await response.json();
+            document.getElementById('passwordResult').textContent = `Generated Password: ${result.password}`;
+        }
+    </script>
+</head>
+<body>
+    <h1>Password Generator</h1>
+    <form id="passwordForm" onsubmit="generatePassword(event)">
+        <label>
+            Length:
+            <input type="number" name="length" value="12" min="4" max="64" required>
+        </label><br>
+        <label>
+            <input type="checkbox" name="uppercase" checked> Include Uppercase
+        </label><br>
+        <label>
+            <input type="checkbox" name="digits" checked> Include Digits
+        </label><br>
+        <label>
+            <input type="checkbox" name="special" checked> Include Special Characters
+        </label><br>
+        <button type="submit">Generate Password</button>
+    </form>
+    <p id="passwordResult"></p>
+</body>
+</html>
