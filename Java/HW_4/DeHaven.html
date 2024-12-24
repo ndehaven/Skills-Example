@@ -1,0 +1,174 @@
+<!-- 
+    @author : ndehaven
+    HTML FILE to correspond with points and values 
+-->
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Styling-->
+<style>
+    
+    #buttons {
+        display: flex;
+        flex-direction: column;
+        align-items:first baseline;
+    }
+
+    button {
+        padding: 10px 20px;
+        margin-bottom: 10px;
+        background-color: goldenrod; /* Green */
+        border: none;
+        color: black;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 18px;
+        transition-duration: 0.4s;
+        cursor: pointer;
+        border-radius: 12px;
+    }
+
+    button:hover {
+        background-color: orange; /* Darker Green */
+    
+    }
+
+    body {
+        font-family:'Times New Roman', Times, serif;  
+        line-height:162%;
+    }
+    
+</style>
+<!-- Fragmenting Passing and normalizing with matrixes-->
+<script id="vertex-shader" type="x-shader/x-vertex">
+attribute vec4 vPosition;
+attribute vec4 vNormal;
+attribute vec2 vTexCoord;
+
+uniform mat4 modelViewMatrix; 
+uniform mat4 projectionMatrix; 
+uniform vec4 lightPosition; 
+
+varying vec3 N;
+varying vec3 L;
+varying vec3 E;
+varying vec2 texCoord; 
+
+void main()
+{   
+    vec3 eye = vec3(0.0, 0.0, 0.0);
+    vec3 pos = (modelViewMatrix * vPosition).xyz;
+    vec3 light = (modelViewMatrix * lightPosition).xyz;
+
+    L = normalize(light - pos);
+    E = normalize(eye - pos);
+    N = normalize( (modelViewMatrix * vNormal).xyz);
+
+    texCoord = vTexCoord; 
+                     
+    gl_Position = projectionMatrix * modelViewMatrix * vPosition;
+}
+</script>
+<!-- Shininess shading and illumination-->
+<script id="fragment-shader" type="x-shader/x-fragment">
+precision mediump float;
+
+uniform vec4 ambientProduct;
+uniform vec4 diffuseProduct;
+uniform vec4 specularProduct;
+uniform float shininess;
+uniform float textured; 
+uniform sampler2D uTexture; 
+
+varying vec3 N;
+varying vec3 L;
+varying vec3 E;
+varying vec2 texCoord;
+
+void
+main()
+{
+    vec3 H = normalize(L + E);
+    vec4 ambient = ambientProduct;
+    float Kd = max(dot(L, N), 0.0);
+    vec4 diffuse = Kd * diffuseProduct;
+    float Ks = pow(max(dot(N, H), 0.0), shininess);
+    vec4 specular = Ks * specularProduct;
+
+    if(dot(L, N) < 0.0) {
+        specular = vec4(0.0, 0.0, 0.0, 1.0);
+    }
+    vec4 fColor = ambient + diffuse + specular;
+    fColor.a = 1.0;
+
+    if(textured == 1.0) { 
+        vec4 textureColor = texture2D(uTexture, texCoord);
+        gl_FragColor = textureColor;
+    }
+    else { 
+        gl_FragColor = fColor;
+    }
+}
+</script>
+<!-- Connections -->
+<script type="text/javascript" src="../Common/webgl-utils.js"></script>
+<script type="text/javascript" src="../Common/initShaders.js"></script>
+<script type="text/javascript" src="../Common/MV.js"></script>
+<script type="text/javascript" src="DeHavenHW4.js"></script> 
+<script type="text/javascript" src="DeHaven_geometryHW4.js"></script> 
+</head>
+<!-- Canvas and Buttons-->
+<body>
+    <div id="container">
+        
+        <h1>CSE470 HW3 - ndehaven</h1>
+        <p class="text-small text-grey-dark">
+        Using the perspective view, two objects are created.<br/>
+        A Cylinder and a Wine Glass <br/>
+        The Objects are interactive and using the buttoms at the bottom <br/>
+        will allow for more effects </p>
+        
+        <canvas id="gl-canvas" width="600" height="600">
+        Oops ... your browser doesn't support the HTML5 canvas element
+        </canvas>
+        <div id="buttons">
+            <div>
+                <button id="wineglass">
+                    Wine Glass
+                </button>
+            <button id="cylinder">
+                Switch to Cylinder
+            </button>
+            </div>
+            <div>
+            <button id="silver">
+                Silver
+            </button>
+            <button id="gold">
+                Gold
+            </button>
+            </div>
+            <div>
+            <button id="rotatelight">
+                Rotate Light(Toggle)
+            </button>
+            <div id="sliders">
+                <label for="fov">Field of View:</label>
+                <input id="fov" type="range" min="10" max="150" value="60"/>
+                <label for="shininess">Shininess:</label>
+                <input id="shininess" type="range" min="1" max="1000" value="200"/>
+            </div>
+            </div>
+        </div>
+        <p>
+            Materials: Gold and Silver we're used as the two colors for shading<br>
+            Reflection properties are added using the phong illumination<br/> 
+            Rotation property added using Theta to the light as well as the normal vectors <br/> 
+        </p>
+        <p>
+            Resources: ShadedSphere2 example for html scripting assistance 
+        </p>
+    </div>
+</body>
+</html>
